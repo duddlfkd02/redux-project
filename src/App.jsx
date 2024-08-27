@@ -1,5 +1,12 @@
+import { useSelector } from "react-redux";
+
 const App = () => {
-  return <div>App</div>;
+  const counterReducer = useSelector((state) => {
+    return state.counter;
+  });
+  console.log("🚀 ~ App ~ counterReducer:", counterReducer);
+
+  return <div></div>;
 };
 
 export default App;
