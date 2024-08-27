@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { plusOne, minusOne } from "./redux/modules/counter";
+// import { plusOne, minusOne } from "./redux/modules/counter";
+import { addNumber, removeNumber } from "./redux/modules/counter";
+import { useState } from "react";
 
 const App = () => {
+  const [count, setCount] = useState(0);
   const counterReducer = useSelector((state) => {
     return state.counter;
   });
@@ -11,22 +14,27 @@ const App = () => {
 
   return (
     <div>
-      {counterReducer.number}
+      {counterReducer.number} <br />
+      <input
+        type="number"
+        value={count}
+        onChange={(e) => {
+          setCount(+e.target.value);
+        }}
+      />
       <button
         onClick={() => {
-          // 액션을 생성하는 함수를 만들어서 휴먼에러 방지 => action creator
-          dispatch(plusOne());
+          dispatch(addNumber(count));
         }}
       >
-        +1
+        더하기
       </button>
-
       <button
         onClick={() => {
-          dispatch(minusOne());
+          dispatch(removeNumber(count));
         }}
       >
-        -1
+        빼기
       </button>
     </div>
   );

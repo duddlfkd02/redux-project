@@ -3,35 +3,37 @@ const initialState = {
   number: 0,
 };
 
-// 1. plain text 변수/상수화 시키기
-const PLUS_ONE = "PLUS_ONE";
-const MIUNS_ONE = "MIUNS_ONE";
+// const PLUS_ONE = "PLUS_ONE";
+// const MIUNS_ONE = "MIUNS_ONE";
 
-// 2. 하드코딩이 아니라 호출해서 사용하게 함수로 만들기
-//  => action creator
-export const plusOne = () => {
+const ADD_NUMBER = "ADD_NUMBER";
+const REMOVE_NUMBER = "REMOVE_NUMBER";
+
+// action creator => action 객체를 만듦 : type과 payload 가질 수 있다.
+export const addNumber = (payload) => {
   return {
-    type: PLUS_ONE,
+    type: ADD_NUMBER,
+    payload, // input에 입력된 값만큼!
   };
 };
 
-export const minusOne = () => {
+export const removeNumber = (payload) => {
   return {
-    type: MIUNS_ONE,
+    type: REMOVE_NUMBER,
+    payload,
   };
 };
 
-// 3.
 const counter = (state = initialState, action) => {
-  console.log("🚀 ~ counter ~ action:", action);
+  //console.log("🚀 ~ counter ~ action:", action);
   switch (action.type) {
-    case PLUS_ONE:
+    case ADD_NUMBER:
       return {
-        number: state.number + 1,
+        number: state.number + action.payload,
       };
-    case MIUNS_ONE:
+    case REMOVE_NUMBER:
       return {
-        number: state.number - 1,
+        number: state.number - action.payload,
       };
     default:
       return state;
