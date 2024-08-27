@@ -3,17 +3,33 @@ const initialState = {
   number: 0,
 };
 
-// 리듀서 함수
+// 1. plain text 변수/상수화 시키기
+const PLUS_ONE = "PLUS_ONE";
+const MIUNS_ONE = "MIUNS_ONE";
+
+// 2. 하드코딩이 아니라 호출해서 사용하게 함수로 만들기
+//  => action creator
+export const plusOne = () => {
+  return {
+    type: PLUS_ONE,
+  };
+};
+
+export const minusOne = () => {
+  return {
+    type: MIUNS_ONE,
+  };
+};
+
+// 3.
 const counter = (state = initialState, action) => {
   console.log("🚀 ~ counter ~ action:", action);
-  switch (
-    action.type // dispatch에게 넘겨받은 type ⭐️ 이 type으로 state값을 변경하기 때문에 action의 type이 중요하다.
-  ) {
-    case "PLUS_ONE":
+  switch (action.type) {
+    case PLUS_ONE:
       return {
         number: state.number + 1,
       };
-    case "MINUS_ONE":
+    case MIUNS_ONE:
       return {
         number: state.number - 1,
       };

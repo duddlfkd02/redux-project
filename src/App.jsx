@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { plusOne, minusOne } from "./redux/modules/counter";
 
 const App = () => {
   const counterReducer = useSelector((state) => {
@@ -13,8 +14,8 @@ const App = () => {
       {counterReducer.number}
       <button
         onClick={() => {
-          // dispatch가 reducer에게 action 객체 type값을 넘겨줌
-          dispatch({ type: "PLUS_ONE" });
+          // 액션을 생성하는 함수를 만들어서 휴먼에러 방지 => action creator
+          dispatch(plusOne());
         }}
       >
         +1
@@ -22,7 +23,7 @@ const App = () => {
 
       <button
         onClick={() => {
-          dispatch({ type: "MINUS_ONE" });
+          dispatch(minusOne());
         }}
       >
         -1
