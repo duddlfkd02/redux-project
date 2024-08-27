@@ -1,13 +1,15 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-// import { plusOne, minusOne } from "./redux/modules/counter";
-import { addNumber, removeNumber } from "./redux/modules/counter";
 import { useState } from "react";
+// import { addNumber, removeNumber } from "./redux/modules/counter";
+//slices 폴더에 있는거로 경로 바꾸기!
+import { addNumber, removeNumber } from "./redux/slices/counterSlice";
 
 const App = () => {
   const [count, setCount] = useState(0);
   const counterReducer = useSelector((state) => {
     return state.counter;
+    // ✅ useSelector로 가져와서 쓸 때는 name 적어서 reducer 안의 어떤 걸 가져올건지 표시!
   });
   // console.log("🚀 ~ App ~ counterReducer:", counterReducer);
   const dispatch = useDispatch();
